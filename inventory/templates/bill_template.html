@@ -1,0 +1,49 @@
+<!-- templates/bill_template.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bill</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            margin-bottom: 20px;
+        }
+
+        .item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Bill</h1>
+        <p>{{ bill.id }}</p>
+    </div>
+    <div class="details">
+        <p><strong>Date:</strong> {{ bill.created_at }}</p>
+        <p><strong>Customer:</strong> {{ bill.customer.name }}</p>
+        <p><strong>Total Amount:</strong> {{ bill.total_amount }}</p>
+    </div>
+    <div class="items">
+        <h2>Items</h2>
+        {% for item in bill.product_bills.all %}
+        <div class="item">
+            <p><strong>Product:</strong> {{ item.product.name }}</p>
+            <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+            <p><strong>Price:</strong> {{ item.price }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
